@@ -12,11 +12,9 @@ int variant_number = 3;
 #define NAME_NUMBER 6
 
 /*  Пункт 5: функція check_sqrt */
-void check_sqrt(int group_num) {
+void check_sqrt(int group_num, size_t len) {
     double sq = sqrt((double) group_num);
-    char name[] = "Кирило";
-    size_t len = strlen(name); 
-
+     
     if (sq > (double) len) {
         double sum = sq + (double) len;
         printf("Результат: %.2fs\n", sum);
@@ -32,8 +30,13 @@ void check_sqrt(int group_num) {
 int main(void) {
 
     /* Пункт 2: синус або косинус */
-    printf("Мій номер за журналом %d. Його Cos = %f\n",
-           variant_number, cos(variant_number));
+    printf("Мій номер за журналом %d.", variant_number);
+
+    if (variant_number % 2 == 0) {
+        printf(" Синус: %.2f\n", sin(variant_number));
+    } else {
+        printf(" Косинус: %.2f\n", cos(variant_number));
+    }
 
     /* Пункт 3a: локальна змінна-рядок name */
     char name[] = "Кирило";
@@ -41,7 +44,8 @@ int main(void) {
            group_number, variant_number, name);
 
     /* Пункт 3b-3c: добуток і явне приведення типів */
-    double product = variant_number * 3.14;
+    const double pi = 3.14;
+    double product = variant_number * pi;
     int converted = (int) product;
     printf("Добуток = %.2f, Конвертований = %d\n", product, converted);
 
@@ -58,7 +62,8 @@ int main(void) {
     printf("Сума усіх чисел від 1 до суми %d: %ld\n", counter, sum);
 
     /* Пункт 5: виклик check_sqrt */
-    check_sqrt(group_number);
+    size_t len = strlen(name);
+    check_sqrt(group_number, len);
 
     /* Пункт 6: switch за номером групи */
     int input_group;
